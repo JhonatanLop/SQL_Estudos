@@ -10,25 +10,38 @@ public class SQLConnection {
     // Dados para conexão com banco
     private String host = "localhost"; // endereço do servidor
     private String port = "5432"; // porta de conexão do servidor
-    private String userName = "nome de usuário"; // nome do usuário para acesso ao banco
-    private String password = "senha de usuário"; // senha do usuário para acesso ao banco
-    private String database = "nome do banco"; // nome do banco de dados a ser utilizado
+    private String userName = "postgres"; // nome do usuário para acesso ao banco
+    private String password = "Postgres!1@2#3"; // senha do usuário para acesso ao banco
+    private String database = "api"; // nome do banco de dados a ser utilizado
     // driver de conexão
     private String driver = "jdbc:postgresql://" + host + ":" + port + "/" + database;
 
     // método de conexão com banco
-    public void connect() {
+    public void connect(){
+        Connection conexao = null;
         try {
+            //carrega a classe do driver do PostgreSQL na memória permitindo comunicação com o banco de dados
             Class.forName("org.postgresql.Driver");
 
             // objeto "conexao" para execução de comandos SQL
-            Connection conexao = DriverManager.getConnection(driver, userName, password);
-            
-            // tratamento de erros
+            conexao = DriverManager.getConnection(driver, userName, password);
+
+        // tratamento de erros
         } catch (ClassNotFoundException ex) {
             System.out.println("Driver do banco de dados não localizado!");
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar com o banco de dados: " + ex.getMessage());
+        } 
+        // encerra conexão com banco
+        finally{
+            // tratamento de erros ao fechar conexão
+            try {
+                if (conexao != null && !conexao.isClosed()) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println("Falha ao fechar conexão: " + ex.getMessage());
+            }
         }
     }
 }

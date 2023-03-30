@@ -64,6 +64,18 @@
     -- muda o valor de TODOS OS CAMPOS onde o valor é igual a 0
     update tabela set meu_campo = 'valor que eu quero' where nome_coluna = '0';
 
+    -- fazendo query para "tratamento de dados", um select de vários subselects criando tabelas temporárias
+    WITH tabela_temp_1 AS (
+        SELECT nome = 'nome' as nome
+        from tabela
+    ), tabela_temp_2 AS (
+        SELECT * WHERE...
+        FROM tabela_temp_1
+    ), tabela_temp_3 AS (
+        SELECT * WHERE...
+        FROM tabela_temp_2
+    ), ....
+
 
 -- Sequence
     -- atualiza o valor da sequence
