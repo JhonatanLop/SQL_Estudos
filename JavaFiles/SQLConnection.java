@@ -1,5 +1,6 @@
 package JavaFiles;
 
+import java.io.IOException;
 // importando pacotes para conexão sql
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +16,7 @@ public class SQLConnection {
     private String database = "api"; // nome do banco de dados a ser utilizado
     // driver de conexão
     private String driver = "jdbc:postgresql://" + host + ":" + port + "/" + database;
+    static Connection conexao;
 
     // método de conexão com banco
     public void connect(){
@@ -43,5 +45,10 @@ public class SQLConnection {
                 System.out.println("Falha ao fechar conexão: " + ex.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) throws SQLException, IOException {
+        String arquivoSql = "caminho para o arquivo sql";
+        QueryLibs.executeSqlFile(conexao, arquivoSql);
     }
 }
