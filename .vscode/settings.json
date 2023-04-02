@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "Alice",
+            "database": "Khali",
+            "username": "postgres"
+        }
+    ],
+    "java.project.referencedLibraries": [
+        "lib/*.jar"
+    ]
+}

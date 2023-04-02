@@ -40,27 +40,35 @@ public class QueryLibs {
     }
 
     public static void insertTable(Connection conexao) throws SQLException {
-        String sql = "INSERT INTO tabela (col1, col2) value (?, ?)";
+        // código sql a ser executado, passando "?" como parâmetro de valors
+        String sql = "INSERT INTO tabela_teste (nome, nome2) values (?, ?)";
         try (PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(1, "valor 1");
-            statement.setString(2, "valor 2");
-            int foo = statement.executeUpdate();
-
+            // substituindo os parâmetros "?" para valores desejados
+            statement.setString(1, "jhow");
+            statement.setString(2, "nicole");
+            // executa o update
+            statement.executeUpdate();
+            // exibe erros ao executar a query
         } catch (Exception ex) {
             System.out.println("Erro ao executar a query: " + ex.getMessage());
         }
     }
 
     public static void executeSqlFile(Connection conexao, String arquivoSql) throws SQLException, IOException {
+        // Verifica se a conexão não é nula
+        if (conexao == null) {
+            System.out.println("Conexão é nula");
+            return; // Encerra o método se a conexão for nula
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoSql))) {
             String linha;
             StringBuilder sb = new StringBuilder();
             while ((linha = br.readLine()) != null) {
                 // adiciona a linha ao StringBuilder
                 sb.append(linha);
-                sb.append(System.lineSeparator());
+                sb.append(System.lineSeparator()); // Adiciona quebra de linha ao final de cada linha lida
             }
-            String sql = sb.toString();
+            String sql = sb.toString(); // Converte o StringBuilder em uma String
             try (Statement statement = conexao.createStatement()) {
                 // executa as instruções SQL contidas no arquivo
                 statement.execute(sql);

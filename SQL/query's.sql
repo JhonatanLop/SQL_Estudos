@@ -34,7 +34,7 @@
     -- alterar uma função de uma coluna na tabela
     alter table nome_da_tabela alter column nome_da_coluna set default to_char(tipo_da_função, 'formatação');
     -- exemplo
-    alter table nome_tabela alter column nome_coluna set default to_char(CURRENT_TIMESTAMP, 'DDMMHH24MISSMS/YYYY');
+    alter table nome_tabela alter column nome_coluna set default to_char(CURRENT_TIMESTAMP, 'DD/MM/YYYY HH24:MI:SS:MS');
     -- alterando uma coluna do tipo "timestamp" para pegar o tempo exato em que o registro novo é criado.
     ALTER TABLE TABELA ADD ATRIBUTO VARCHAR NOT NULL DEFAULT to_char(CURRENT_TIMESTAMP, 'DDMMYYHH24MISSMS');
     -- #########
