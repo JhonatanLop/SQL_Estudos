@@ -143,3 +143,12 @@
 
     -- como dropar uma trigger
     drop trigger nome_da_trigger on nome_tabela;
+
+-- query para exportar dados de uma tabela sql para um arquivo .csv
+copy (select * from tabela where condicao) -- seleciona campos e coluna
+to 'C:/Users/jhool/OneDrive/Área de Trabalho' -- caminho onde deseja salvar
+with delimiter ';' -- delimitador
+csv header -- adiciona o cabeçalho às colunas
+encoding 'UTF-8'; -- seleciona a formatação
+
+COPY (SELECT * FROM nome_da_tabela) TO 'caminho/do/arquivo.csv' DELIMITER ';' CSV HEADER;
